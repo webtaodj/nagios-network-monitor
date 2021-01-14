@@ -12,7 +12,7 @@ define command{
         command_name    check_icmp
         command_line    $USER1$/check_icmp -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -b 1000
 check 5001 prot
-check_command check_tcpqc!10.4.90.201!5001
+check_command check_tcpqc!x.x.x.x!5001
 define command{
         command_name    check_tcpqc
         command_line    $USER1$/check_tcp -H $ARG1$ -p $ARG2$ $ARG3$
