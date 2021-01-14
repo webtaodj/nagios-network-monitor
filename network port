@@ -1,0 +1,26 @@
+ssl monitor
+check_command      check_ssl!ecoas.myvecid.cn
+define command {
+
+    command_name    check_ssl
+    command_line    $USER1$/check_http --ssl -C 30 -H $ARG1$
+}
+
+ping size 1000
+check_command           check_icmp!200.0,20%!600.0,60%
+define command{
+        command_name    check_icmp
+        command_line    $USER1$/check_icmp -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -b 1000
+check 5001 prot
+check_command check_tcpqc!10.4.90.201!5001
+define command{
+        command_name    check_tcpqc
+        command_line    $USER1$/check_tcp -H $ARG1$ -p $ARG2$ $ARG3$
+        }
+DNS
+ check_command check_dns!drive.google.com!X.X.X.X
+ define command{
+        command_name    check_dns
+        command_line    $USER1$/check_dns -H $ARG1$ -s $ARG2$ -w 1 -c 3
+        }
+
